@@ -1,0 +1,82 @@
+﻿@page "/testDocumentPage"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using TeDo.Client.Model;
+@using TeDo.Shared;
+@using BlazorBootstrap
+@*@attribute [Authorize];*@
+@inject HttpClient Http
+
+<Grid TItem="TestDocument"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="TestDocumentDataProvider"
+      AllowPaging="true"
+      PageSize="5"
+      Responsive="true">
+
+    <GridColumn TItem="TestDocument" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+        @context.Id
+    </GridColumn>
+  @*  <GridColumn TItem="TestDocument" HeaderText="Participant" PropertyName="Participant" SortKeySelector="item => item.Participant.Name">
+        @context.Participant.Name
+    </GridColumn>*@
+    <GridColumn TItem="TestDocument" HeaderText="Introduction" PropertyName="Introduction" SortKeySelector="item => item.Introduction">
+        @context.Introduction
+    </GridColumn>
+    <GridColumn TItem="TestDocument" HeaderText="DocumentSupplied" PropertyName="DocumentSupplied" SortKeySelector="item => item.DocumentSupplied">
+        @context.DocumentSupplied
+    </GridColumn>
+@*    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation">
+        @context.DefinitionAndAbbreviation
+    </GridColumn>
+    <GridColumn TItem="TestDocument" HeaderText="Punchlist" PropertyName="Punchlist" SortKeySelector="item => item.Punchlist">
+        @context.Punchlist
+    </GridColumn>
+    <GridColumn TItem="TestDocument" HeaderText="PlacesOfTesting" PropertyName="PlacesOfTesting" SortKeySelector="item => item.PlacesOfTesting">
+        @context.PlacesOfTesting
+    </GridColumn>*@
+
+
+</Grid>
+
+
+@code {
+    private List<TestDocument> testDocument = default!;
+
+
+    private async Task<GridDataProviderResult<TestDocument>> TestDocumentDataProvider(GridDataProviderRequest<TestDocument> request)
+    {
+        if (testDocument is null) // pull employees only one time for client-side filtering, sorting, and paging
+            testDocument = GetTestDocuments(); // call a service or an API to pull the employees
+
+        return await Task.FromResult(request.ApplyTo(testDocument));
+    }
+
+    private List<TestDocument> GetTestDocuments()
+    {
+        return new List<TestDocument>
+        {
+            new TestDocument { Id = 1, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 2, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},  
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
+            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"}
+        };
+    }
+}
+
+
+
+@code {
+
+}

@@ -1,18 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.7.34031.279
+VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeDo.Server", "Server\TeDo.Server.csproj", "{95EF5D26-3606-427C-873C-A8C6FBC1CB16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeDo.Server", "TeDo\Server\TeDo.Server.csproj", "{EA0A9453-7C32-4D32-B27B-F7D7D278671F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeDo.Client", "Client\TeDo.Client.csproj", "{9EDD11E5-A5B1-44F3-85B1-D853F084448A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeDo.Client", "TeDo\Client\TeDo.Client.csproj", "{44C41948-91E2-4B4A-94BC-AE3DEAFE1940}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeDo.Shared", "Shared\TeDo.Shared.csproj", "{BB982C09-8B98-4ECE-9324-FA08B45B5C67}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{F5517252-E6B6-41F8-B9CD-6B9204EF94F9}"
-	ProjectSection(SolutionItems) = preProject
-		Library.cs = Library.cs
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeDo.Shared", "TeDo\Shared\TeDo.Shared.csproj", "{3B929FDD-E402-40E2-97B9-89D181E61599}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,23 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95EF5D26-3606-427C-873C-A8C6FBC1CB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95EF5D26-3606-427C-873C-A8C6FBC1CB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95EF5D26-3606-427C-873C-A8C6FBC1CB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95EF5D26-3606-427C-873C-A8C6FBC1CB16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9EDD11E5-A5B1-44F3-85B1-D853F084448A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EDD11E5-A5B1-44F3-85B1-D853F084448A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EDD11E5-A5B1-44F3-85B1-D853F084448A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EDD11E5-A5B1-44F3-85B1-D853F084448A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB982C09-8B98-4ECE-9324-FA08B45B5C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB982C09-8B98-4ECE-9324-FA08B45B5C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB982C09-8B98-4ECE-9324-FA08B45B5C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB982C09-8B98-4ECE-9324-FA08B45B5C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA0A9453-7C32-4D32-B27B-F7D7D278671F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0A9453-7C32-4D32-B27B-F7D7D278671F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0A9453-7C32-4D32-B27B-F7D7D278671F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0A9453-7C32-4D32-B27B-F7D7D278671F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C41948-91E2-4B4A-94BC-AE3DEAFE1940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C41948-91E2-4B4A-94BC-AE3DEAFE1940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C41948-91E2-4B4A-94BC-AE3DEAFE1940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C41948-91E2-4B4A-94BC-AE3DEAFE1940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B929FDD-E402-40E2-97B9-89D181E61599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B929FDD-E402-40E2-97B9-89D181E61599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B929FDD-E402-40E2-97B9-89D181E61599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B929FDD-E402-40E2-97B9-89D181E61599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A4EC1888-03E9-4180-AB64-6A308E221886}
+		SolutionGuid = {86329AB5-6099-4B24-89F2-E1A638499A1A}
 	EndGlobalSection
 EndGlobal
