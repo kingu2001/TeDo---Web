@@ -1,7 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Components.WebAssembly.Http;
-
-namespace TeDo.Libraries;
+﻿namespace TeDo.Libraries;
 
 public class TestDocumentService : ITestDocumentService
 {

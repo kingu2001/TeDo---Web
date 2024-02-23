@@ -1,5 +1,4 @@
-﻿
-using TeDo.Client.Model;
+﻿using TeDo.Client.Model;
 
 namespace TeDo.Libraries;
 
