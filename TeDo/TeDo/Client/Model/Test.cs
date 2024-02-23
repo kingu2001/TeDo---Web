@@ -10,5 +10,6 @@
         public string SATInitials { get; set; }
         public string FATInitials { get; set; }
         public string OATInitials { get; set; }
+        public TestDocument TestDocument { get; set; }
     }
 }
