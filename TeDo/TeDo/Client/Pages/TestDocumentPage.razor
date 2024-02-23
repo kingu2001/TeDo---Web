@@ -17,66 +17,79 @@
     <GridColumn TItem="TestDocument" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
         @context.Id
     </GridColumn>
-  @*  <GridColumn TItem="TestDocument" HeaderText="Participant" PropertyName="Participant" SortKeySelector="item => item.Participant.Name">
+    <GridColumn TItem="TestDocument" HeaderText="Participant" PropertyName="Participant" SortKeySelector="item => item.Participant.Name">
         @context.Participant.Name
-    </GridColumn>*@
+    </GridColumn>
     <GridColumn TItem="TestDocument" HeaderText="Introduction" PropertyName="Introduction" SortKeySelector="item => item.Introduction">
         @context.Introduction
     </GridColumn>
     <GridColumn TItem="TestDocument" HeaderText="DocumentSupplied" PropertyName="DocumentSupplied" SortKeySelector="item => item.DocumentSupplied">
         @context.DocumentSupplied
     </GridColumn>
-@*    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation">
-        @context.DefinitionAndAbbreviation
+    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Key">
+        @foreach (var kvp in context.DefinitionAndAbbreviation)
+        {
+            <div>@kvp.Key:@kvp.Value</div>
+        }
     </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="Punchlist" PropertyName="Punchlist" SortKeySelector="item => item.Punchlist">
-        @context.Punchlist
+    <GridColumn TItem="TestDocument" HeaderText="Punchlist" PropertyName="Punchlist" SortKeySelector="item => item.Punchlist.FirstOrDefault().Action">
+        @context.Punchlist.FirstOrDefault().Action
     </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="PlacesOfTesting" PropertyName="PlacesOfTesting" SortKeySelector="item => item.PlacesOfTesting">
-        @context.PlacesOfTesting
-    </GridColumn>*@
+    <GridColumn TItem="TestDocument" HeaderText="PlacesOfTesting" PropertyName="PlacesOfTesting" SortKeySelector="item => item.PlacesOfTesting.FirstOrDefault().Firm.Name">
+        @context.PlacesOfTesting.FirstOrDefault().Firm.Name
+    </GridColumn>
 
 
 </Grid>
 
 
 @code {
-    private List<TestDocument> testDocument = default!;
+    private List<TestDocument> testDocuments = default!;
 
 
     private async Task<GridDataProviderResult<TestDocument>> TestDocumentDataProvider(GridDataProviderRequest<TestDocument> request)
     {
-        if (testDocument is null) // pull employees only one time for client-side filtering, sorting, and paging
-            testDocument = GetTestDocuments(); // call a service or an API to pull the employees
+        if (testDocuments is null) // pull employees only one time for client-side filtering, sorting, and paging
+            testDocuments = GetTestDocuments(); // call a service or an API to pull the employees
 
-        return await Task.FromResult(request.ApplyTo(testDocument));
+        return await Task.FromResult(request.ApplyTo(testDocuments));
     }
 
     private List<TestDocument> GetTestDocuments()
     {
         return new List<TestDocument>
         {
-            new TestDocument { Id = 1, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 2, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},  
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"},
-            new TestDocument { Id = 3, Introduction = "Hello", DocumentSupplied = "Document"}
+            new TestDocument
+            {
+                Id = 1,
+                Participant = new Participant{Name = "Lars"},
+                Introduction = "Intro",
+                DocumentSupplied = "Document",
+                DefinitionAndAbbreviation = new Dictionary<string,string>
+                {
+                    {"Factory Acceptance Test", "FAT"}
+                },
+                Punchlist = new List<Punch>
+                {
+                    new Punch{Action="Corrected"}
+                },
+
+                PlacesOfTesting = new List<PlaceOfTesting>
+                {
+                    new PlaceOfTesting{Firm = new Firm{Name = "Name A", FullAddress="Location A", Id=1}}
+                }
+            }
         };
     }
+
+    //private List<TestDocument> GetTestDocuments()
+    //{
+    //    return testDocuments;
+        //}
+}
+
+@functions {
+
 }
 
 
-
-@code {
-
-}
