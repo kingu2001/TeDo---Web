@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\TeDo.Shared.csproj" />
+    <ProjectReference Include="..\TeDo.Libraries\TeDo.Libraries.csproj" />
   </ItemGroup>
 
   <ItemGroup>
