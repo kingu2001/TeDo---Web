@@ -1,7 +1,1 @@
-namespace TeDoLibraries.Models
-{
-    public class TestDocument
-    {
-    
-    }
-}
+using Client
