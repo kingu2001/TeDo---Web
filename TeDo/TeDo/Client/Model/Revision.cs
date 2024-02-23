@@ -8,5 +8,6 @@
         public string ChapterAffected { get; set; }
         public string Description { get; set; }
         public DateOnly Date { get; set; }
+        public TestDocument TestDocument { get; set; }
     }
 }

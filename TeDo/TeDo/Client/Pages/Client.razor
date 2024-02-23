@@ -1,11 +1,61 @@
 ﻿@page "/client"
+@using BlazorBootstrap
+@using TeDo.Client.Model;
 
 <PageTitle>Client</PageTitle>
+<Grid TItem="Participant"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="ParticipantDataProvider"
+      AllowPaging="true"
+      PageSize="5"
+      Responsive="true">
 
-<h1>Client</h1>
-
+    <GridColumn TItem="Participant" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+        @context.Id
+    </GridColumn>
+    <GridColumn TItem="Participant" HeaderText="Name" PropertyName="Name" SortKeySelector="item => item.Name">
+        @context.Name
+    </GridColumn>
+    <GridColumn TItem="Participant" HeaderText="Firm" PropertyName="Firm" SortKeySelector="item => item.Firm.Name">
+        @context.Firm.Name
+    </GridColumn>
+    <GridColumn TItem="Participant" HeaderText="Signature" PropertyName="Signature" SortKeySelector="item => item.Signature">
+        @context.Signature
+    </GridColumn>
+    <GridColumn TItem="Participant" HeaderText="Date" PropertyName="Date" SortKeySelector="item => item.Date">
+        @context.Date
+    </GridColumn>
+    <GridColumn TItem="Participant" HeaderText="Test Document" PropertyName="TestDocument" SortKeySelector="item => item.TestDocument.Name">
+        @context.TestDocument.Name
+    </GridColumn>
+</Grid>
 
 
 @code {
+    private List<Participant> participants = default!;
 
+
+    private async Task<GridDataProviderResult<Participant>> ParticipantDataProvider(GridDataProviderRequest<Participant> request)
+    {
+        if (participants is null) // pull employees only one time for client-side filtering, sorting, and paging
+            participants = GetParticipants(); // call a service or an API to pull the employees
+
+        return await Task.FromResult(request.ApplyTo(participants));
+    }
+
+    private List<Participant> GetParticipants()
+    {
+        return new List<Participant>
+        {
+            new Participant
+            {
+                Id = 1,
+                Name = "Mikkel",
+                Firm = new Firm{Name = "Firma A"},
+                Signature = "Underskrevet af Mikkel",
+                Date = new DateOnly(2024,02,23),
+                TestDocument = new TestDocument{Name = "Test af Mikkel 2.0"}
+            }
+        };
+    }
 }

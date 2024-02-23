@@ -7,5 +7,6 @@
         public Firm Firm { get; set; }
         public string Signature { get; set; }
         public DateOnly Date { get; set; }
+        public TestDocument TestDocument { get; set; }
     }
 }

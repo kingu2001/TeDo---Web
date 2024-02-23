@@ -8,5 +8,6 @@
         public string Description { get; set; }
         public string Owner { get; set; }
         public string Action { get; set; }
+        public TestDocument TestDocument { get; set; }
     }
 }
