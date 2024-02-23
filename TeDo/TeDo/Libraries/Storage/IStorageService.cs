@@ -1,4 +1,6 @@
-﻿namespace TeDo.Libraries;
+﻿using TeDo.Libraries.Models;
+
+namespace TeDo.Libraries;
 
 public interface IStorageService
 {

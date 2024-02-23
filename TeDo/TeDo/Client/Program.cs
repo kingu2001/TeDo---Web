@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using TeDo.Client;
+using TeDo.Libraries;
 
 namespace TeDo.Client
 {
@@ -19,6 +19,7 @@ namespace TeDo.Client
             // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("TeDo.ServerAPI"));
 
+            builder.Services.AddSingleton<IStorageService, StorageService>();
 
             builder.Services.AddApiAuthorization();
             builder.Services.AddBlazorBootstrap();

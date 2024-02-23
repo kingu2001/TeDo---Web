@@ -1,6 +1,4 @@
-﻿using TeDo.Client.Model;
-
-namespace TeDo.Libraries;
+﻿namespace TeDo.Libraries.Models;
 
 public class TestDocument
 {
