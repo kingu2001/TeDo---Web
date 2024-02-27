@@ -2,7 +2,9 @@
 @using BlazorBootstrap;
 @using Microsoft.AspNetCore.Authorization;
 @using TeDo.Server.Data;
-@inject TeDo.Server.Data.WordService WordService
+@using Syncfusion.DocIO;
+@using Syncfusion.DocIO.DLS;
+@inject TeDo.Server.Data.WordService Service
 @inject Microsoft.JSInterop.IJSRuntime IJsRuntime
 
 <h2>Syncfusion DocIO library (Essential DocIO)</h2>
@@ -12,25 +14,33 @@
 @code {
 
     private IJSObjectReference? IJsObject;
-
     MemoryStream documentStream;
+    private IBrowserFile selectedFile;
+    private string HtmlDocumentUrl;
+
+
     /// <summary>
     /// Create and download the Word document
     /// </summary>
     protected async void CreateWord()
     {
-        documentStream = WordService.CreateWord();
+        documentStream = Service.CreateWord();
         await SaveAsFile("Sample.docx", Convert.ToBase64String(documentStream.ToArray()));
     }
+
 }
-@functions{
+
+@functions
+{
+
     private async Task SaveAsFile(string fileName, string bytesBase64)
     {
         if (IJsObject ==null)
         {
-        IJsObject = await IJsRuntime.InvokeAsync<IJSObjectReference>("import", "/js/Js.js");
-            
+            IJsObject = await IJsRuntime.InvokeAsync<IJSObjectReference>("import", "/js/Js.js");
+
         }
         await IJsObject.InvokeVoidAsync("saveAsFile", fileName, bytesBase64);
     }
+       
 }

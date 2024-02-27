@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.2.8" />
+    <PackageReference Include="Syncfusion.Blazor.WordProcessor" Version="24.2.8" />
     <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="24.2.8" />
   </ItemGroup>
 

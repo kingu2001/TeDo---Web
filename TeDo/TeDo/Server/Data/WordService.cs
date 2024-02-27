@@ -1,6 +1,7 @@
 ﻿using Syncfusion.DocIO;
 using Syncfusion.DocIO.DLS;
 using System.IO;
+using System.Reflection.Metadata;
 namespace TeDo.Server.Data
 {
     public class WordService
@@ -72,6 +73,19 @@ namespace TeDo.Server.Data
             document.Close();
             stream.Position = 0;
             return stream;
+        }
+
+        public MemoryStream OpenAndSaveDocument()
+        {
+            MemoryStream stream = new MemoryStream();
+            using (FileStream sourceStreamPath = new FileStream("Input.docx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                //Open an existing Word document.
+                using (WordDocument document = new WordDocument(sourceStreamPath, FormatType.Docx))
+                document.Close();
+                stream.Position = 0;
+                return stream;
+            }
         }
     }
 }

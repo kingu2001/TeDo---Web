@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Syncfusion.Blazor;
+using System.Security.Cryptography.X509Certificates;
 using TeDo.Server.Data;
 using TeDo.Server.Models;
 
@@ -11,6 +13,12 @@ namespace TeDo
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddSyncfusionBlazor();
+
+            builder.Services.AddServerSideBlazor().AddHubOptions(o =>
+            {
+                o.MaximumReceiveMessageSize = 102400000;
+            });
 
 			var MyAllowPolicy = "_myAllowPolicy";
 			builder.Services.AddCors(opt => opt.AddPolicy(name: MyAllowPolicy, policy =>

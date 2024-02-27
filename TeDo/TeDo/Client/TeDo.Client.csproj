@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Content Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="wwwroot\Images\Tipatek.png" />
   </ItemGroup>
 
@@ -16,6 +23,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.16" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="6.0.16" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.2.8" />
+    <PackageReference Include="Syncfusion.Blazor.WordProcessor" Version="24.2.8" />
     <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="24.2.8" />
   </ItemGroup>
 
@@ -26,10 +35,6 @@
 
   <ItemGroup>
     <Resource Include="wwwroot\Images\Tipatek.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

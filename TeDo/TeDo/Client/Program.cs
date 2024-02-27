@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System;
 using TeDo.Libraries;
+using Syncfusion.Blazor;
 using TeDo.Server.Data;
 
 namespace TeDo.Client
