@@ -1,10 +1,10 @@
-﻿@page "/testDocumentPage"
+﻿@page "/TestDocumentPage"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using TeDo.Client.Model;
 @using TeDo.Shared;
 @using BlazorBootstrap
-@*@attribute [Authorize];*@
+@attribute [Authorize];
 @inject HttpClient Http
 
 <Grid TItem="TestDocument"
@@ -38,7 +38,6 @@
     <GridColumn TItem="TestDocument" HeaderText="PlacesOfTesting" PropertyName="PlacesOfTesting" SortKeySelector="item => item.PlacesOfTesting.FirstOrDefault().Firm.Name">
         @context.PlacesOfTesting.FirstOrDefault().Firm.Name
     </GridColumn>
-
 
 </Grid>
 

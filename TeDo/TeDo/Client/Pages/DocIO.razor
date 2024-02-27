@@ -1,0 +1,36 @@
+﻿@page "/Doc"
+@using BlazorBootstrap;
+@using Microsoft.AspNetCore.Authorization;
+@using TeDo.Server.Data;
+@inject TeDo.Server.Data.WordService WordService
+@inject Microsoft.JSInterop.IJSRuntime IJsRuntime
+
+<h2>Syncfusion DocIO library (Essential DocIO)</h2>
+<p>Syncfusion DocIO library (Essential DocIO) is a Blazor DocIO library used to create, read, edit, and convert Word files in your applications without Microsoft Office dependencies.</p>
+<button class="btn btn-primary" @onclick="CreateWord" >Create Word</button>
+
+@code {
+
+    private IJSObjectReference? IJsObject;
+
+    MemoryStream documentStream;
+    /// <summary>
+    /// Create and download the Word document
+    /// </summary>
+    protected async void CreateWord()
+    {
+        documentStream = WordService.CreateWord();
+        await SaveAsFile("Sample.docx", Convert.ToBase64String(documentStream.ToArray()));
+    }
+}
+@functions{
+    private async Task SaveAsFile(string fileName, string bytesBase64)
+    {
+        if (IJsObject ==null)
+        {
+        IJsObject = await IJsRuntime.InvokeAsync<IJSObjectReference>("import", "/js/Js.js");
+            
+        }
+        await IJsObject.InvokeVoidAsync("saveAsFile", fileName, bytesBase64);
+    }
+}

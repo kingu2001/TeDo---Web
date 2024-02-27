@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="24.2.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Libraries\Libraries.csproj" />
   </ItemGroup>
 

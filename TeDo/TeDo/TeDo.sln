@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeDo.Server", "Server\TeDo.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeDo.Shared", "Shared\TeDo.Shared.csproj", "{8EE85A00-123F-4F57-9439-85E1F9E3C3C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{5BEA4816-6F0A-4267-86D1-5C5A084709A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApplication", "TestApplication\TestApplication.csproj", "{5BEA4816-6F0A-4267-86D1-5C5A084709A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libraries", "Libraries\Libraries.csproj", "{014CC127-068B-45CD-AC8A-AF9919432355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libraries", "Libraries\Libraries.csproj", "{014CC127-068B-45CD-AC8A-AF9919432355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

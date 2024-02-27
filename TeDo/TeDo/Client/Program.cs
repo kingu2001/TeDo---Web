@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using System;
 using TeDo.Libraries;
+using TeDo.Server.Data;
 
 namespace TeDo.Client
 {
@@ -23,6 +25,8 @@ namespace TeDo.Client
 
             builder.Services.AddApiAuthorization();
             builder.Services.AddBlazorBootstrap();
+            builder.Services.AddScoped<WordService>();
+
 
             await builder.Build().RunAsync();
         }

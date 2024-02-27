@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="24.2.8" />
+  </ItemGroup>
+
 </Project>

@@ -12,6 +12,12 @@ namespace TeDo
         {
             var builder = WebApplication.CreateBuilder(args);
 
+			var MyAllowPolicy = "_myAllowPolicy";
+			builder.Services.AddCors(opt => opt.AddPolicy(name: MyAllowPolicy, policy =>
+			{
+				policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+			}));
+
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -26,6 +32,7 @@ namespace TeDo
 
             builder.Services.AddAuthentication()
                 .AddIdentityServerJwt();
+
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
@@ -47,6 +54,7 @@ namespace TeDo
 
             app.UseHttpsRedirection();
 
+            app.UseCors(MyAllowPolicy);
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
