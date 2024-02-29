@@ -1,28 +1,29 @@
 ﻿using TeDo.Libraries.Models;
 
-namespace TeDo.Libraries;
-
-public class TestDocumentService : ITestDocumentService
+namespace TeDo.Libraries
 {
-    private readonly IStorageService _storageService;
-
-    public TestDocumentService(IStorageService storageService)
+    public class TestDocumentService : ITestDocumentService
     {
-        _storageService = storageService;
-    }
+        private readonly IStorageService _storageService;
 
-    public List<TestDocument> GetAll()
-    {
-        return _storageService.TestDocuments.ToList() ?? throw new ArgumentNullException(nameof(_storageService.TestDocuments));
-    }
+        public TestDocumentService(IStorageService storageService)
+        {
+            _storageService = storageService;
+        }
 
-    public TestDocument? GetById(int id)
-    {
-        return _storageService.TestDocuments.FirstOrDefault(t => t.Id == id);
-    }
+        public List<TestDocument> GetAll()
+        {
+            return _storageService.TestDocuments.ToList() ?? throw new ArgumentNullException(nameof(_storageService.TestDocuments));
+        }
 
-    public TestDocument? GetBySlug(string slug)
-    {
-        return _storageService.TestDocuments.FirstOrDefault(t => t.Slug == slug);
+        public TestDocument? GetById(int id)
+        {
+            return _storageService.TestDocuments.FirstOrDefault(t => t.Id == id);
+        }
+
+        public TestDocument? GetBySlug(string slug)
+        {
+            return _storageService.TestDocuments.FirstOrDefault(t => t.Slug == slug);
+        }
     }
 }

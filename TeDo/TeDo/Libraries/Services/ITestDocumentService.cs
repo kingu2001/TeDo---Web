@@ -1,10 +1,12 @@
-﻿using TeDo.Libraries.Models;
+﻿using System.Runtime.Serialization;
+using TeDo.Libraries.Models;
 
-namespace TeDo.Libraries;
-
-public interface ITestDocumentService
+namespace TeDo.Libraries
 {
-    TestDocument? GetById(int id);
-    TestDocument? GetBySlug(string slug);
-    List<TestDocument> GetAll();
+    public interface ITestDocumentService
+    { 
+        TestDocument? GetById(int id);
+        TestDocument? GetBySlug(string slug);
+        List<TestDocument> GetAll();
+    }
 }

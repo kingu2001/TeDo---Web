@@ -1,10 +1,11 @@
 ﻿using TeDo.Libraries.Models;
 
-namespace TeDo.Libraries;
-
-public interface IStorageService
+namespace TeDo.Libraries
 {
-    IList<TestDocument> TestDocuments { get; }
+    public interface IStorageService
+    {
+        IList<TestDocument> TestDocuments { get; }
 
-    Task PopulateList();
+        Task PopulateList();
+    }
 }

@@ -1,9 +1,11 @@
 ﻿using Libraries.Models;
 
-namespace TeDo.Libraries.Models;
-
-public class TestDocument
+namespace TeDo.Libraries.Models
 {
+
+
+    public class TestDocument
+    {
         public int Id { get; set; }
         public string? Name { get; set; }
         public Participant? Participant { get; set; }
@@ -27,4 +29,5 @@ public class TestDocument
                 return string.Format("/testdocument/{0}", Id);
             } 
         }
+    }
 }

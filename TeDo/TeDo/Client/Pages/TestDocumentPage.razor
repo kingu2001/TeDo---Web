@@ -1,14 +1,13 @@
 ﻿@page "/testDocumentPage"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using TeDo.Libraries;
 @using TeDo.Libraries.Models;
+@using TeDo.Libraries;
 @using TeDo.Shared;
 @using BlazorBootstrap
-@*@attribute [Authorize];*@
 @inject HttpClient Http
-@inject TestDocumentService teDoservice
-@inject StorageService storageService
+@inject ITestDocumentService testDocumentService
+@inject IStorageService storageService
 <Grid TItem="TestDocument"
       Class="table table-hover table-bordered table-striped"
       DataProvider="TestDocumentDataProvider"
@@ -16,35 +15,38 @@
       PageSize="5"
       Responsive="true">
     
-        
-@foreach (TestDocument testDocument in testDocuments)
+@if(testDocuments != null)
 {
-    <GridColumn TItem="TestDocument" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
-        @context.Id
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="Participant" PropertyName="Participant" SortKeySelector="item => item.Participant.Name">
-        @context.Participant.Name
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="Introduction" PropertyName="Introduction" SortKeySelector="item => item.Introduction">
-        @context.Introduction
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="DocumentSupplied" PropertyName="DocumentSupplied" SortKeySelector="item => item.DocumentSupplied">
-        @context.DocumentSupplied
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Definition">
-        @context.DefinitionAndAbbreviation.FirstOrDefault()
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Abbreviation">
-        @context.DefinitionAndAbbreviation.FirstOrDefault().
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="Punchlist" PropertyName="Punchlist" SortKeySelector="item => item.Punchlist.FirstOrDefault().Action">
-        @context.Punchlist.FirstOrDefault().Action
-    </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="PlacesOfTesting" PropertyName="PlacesOfTesting" SortKeySelector="item => item.PlacesOfTesting.FirstOrDefault().Firm.Name">
-        @context.PlacesOfTesting.FirstOrDefault().Firm.Name
-    </GridColumn>
+
+    @foreach (TestDocument testDocument in testDocuments)
+    {
+        <GridColumn TItem="TestDocument" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
+            @context.Id
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="Participant" PropertyName="Participant" SortKeySelector="item => item.Participant.Name">
+            @context.Participant.Name
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="Introduction" PropertyName="Introduction" SortKeySelector="item => item.Introduction">
+            @context.Introduction
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="DocumentSupplied" PropertyName="DocumentSupplied" SortKeySelector="item => item.DocumentSupplied">
+            @context.DocumentSupplied
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Definition">
+            @context.DefinitionAndAbbreviation.FirstOrDefault()
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Abbreviation">
+            @context.DefinitionAndAbbreviation.FirstOrDefault().
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="Punchlist" PropertyName="Punchlist" SortKeySelector="item => item.Punchlist.FirstOrDefault().Action">
+            @context.Punchlist.FirstOrDefault().Action
+        </GridColumn>
+        <GridColumn TItem="TestDocument" HeaderText="PlacesOfTesting" PropertyName="PlacesOfTesting" SortKeySelector="item => item.PlacesOfTesting.FirstOrDefault().Firm.Name">
+            @context.PlacesOfTesting.FirstOrDefault().Firm.Name
+        </GridColumn>
 
 
+    }
 }
 </Grid>
 
@@ -55,12 +57,12 @@
 
     private async Task<GridDataProviderResult<TestDocument>> TestDocumentDataProvider(GridDataProviderRequest<TestDocument> request)
     {
-        var isDataRetrieved = teDoservice.GetAll();
+        var isDataRetrieved = testDocumentService.GetAll();
 
         if (testDocuments is null)
         {
             await storageService.PopulateList();
-            testDocuments = teDoservice.GetAll(); // call a service or an API to pull the employees
+            testDocuments = testDocumentService.GetAll(); // call a service or an API to pull the employees
             
         } // pull employees only one time for client-side filtering, sorting, and paging
 
