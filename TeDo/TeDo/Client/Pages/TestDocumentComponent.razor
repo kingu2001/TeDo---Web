@@ -1,0 +1,58 @@
+﻿@page "/testDocumentPage"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using TeDo.Libraries.Models;
+@using TeDo.Libraries;
+@using TeDo.Shared;
+@using BlazorBootstrap
+@inject HttpClient Http
+@inject ITestDocumentService testDocumentService
+@inject IStorageService storageService
+
+<h1 class="h1 text-center">List of Test Documents</h1>
+@if(testDocuments?.Any() ?? false)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+            </tr>
+      </thead>
+     <tbody>
+         @foreach (var item in testDocuments)
+         {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Introduction</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<TestDocument>? testDocuments {get; set;}
+
+}
+@functions{
+    protected override async Task OnInitializedAsync()
+    {
+        testDocuments = testDocumentService.GetAll();
+        if(testDocuments is null)
+        {
+            await storageService.PopulateList();
+            testDocuments = testDocumentService.GetAll();
+            foreach(TestDocument item in testDocuments)
+            {
+                Console.WriteLine("---> " + item.Name);
+            }
+        }
+        await base.OnInitializedAsync();
+    }   
+}
+
+
