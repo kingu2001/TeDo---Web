@@ -4,7 +4,7 @@ namespace TeDo.Libraries;
 
 public interface IStorageService
 {
-    List<TestDocument> TestDocuments { get; }
+    IList<TestDocument> TestDocuments { get; }
 
     Task PopulateList();
 }

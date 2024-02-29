@@ -20,9 +20,11 @@ namespace TeDo.Client
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("TeDo.ServerAPI"));
 
             builder.Services.AddSingleton<IStorageService, StorageService>();
+            builder.Services.AddTransient<ITestDocumentService, TestDocumentService>();
 
             builder.Services.AddApiAuthorization();
             builder.Services.AddBlazorBootstrap();
+
 
             await builder.Build().RunAsync();
         }

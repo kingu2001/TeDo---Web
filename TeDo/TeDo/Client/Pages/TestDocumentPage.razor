@@ -1,19 +1,24 @@
 ﻿@page "/testDocumentPage"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using TeDo.Client.Model;
+@using TeDo.Libraries;
+@using TeDo.Libraries.Models;
 @using TeDo.Shared;
 @using BlazorBootstrap
 @*@attribute [Authorize];*@
 @inject HttpClient Http
-
+@inject TestDocumentService teDoservice
+@inject StorageService storageService
 <Grid TItem="TestDocument"
       Class="table table-hover table-bordered table-striped"
       DataProvider="TestDocumentDataProvider"
       AllowPaging="true"
       PageSize="5"
       Responsive="true">
-
+    
+        
+@foreach (TestDocument testDocument in testDocuments)
+{
     <GridColumn TItem="TestDocument" HeaderText="Id" PropertyName="Id" SortKeySelector="item => item.Id">
         @context.Id
     </GridColumn>
@@ -26,11 +31,11 @@
     <GridColumn TItem="TestDocument" HeaderText="DocumentSupplied" PropertyName="DocumentSupplied" SortKeySelector="item => item.DocumentSupplied">
         @context.DocumentSupplied
     </GridColumn>
-    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Key">
-        @foreach (var kvp in context.DefinitionAndAbbreviation)
-        {
-            <div>@kvp.Key:@kvp.Value</div>
-        }
+    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Definition">
+        @context.DefinitionAndAbbreviation.FirstOrDefault()
+    </GridColumn>
+    <GridColumn TItem="TestDocument" HeaderText="DefinitionAndAbbreviation" PropertyName="DefinitionAndAbbreviation" SortKeySelector="item => item.DefinitionAndAbbreviation.FirstOrDefault().Abbreviation">
+        @context.DefinitionAndAbbreviation.FirstOrDefault().
     </GridColumn>
     <GridColumn TItem="TestDocument" HeaderText="Punchlist" PropertyName="Punchlist" SortKeySelector="item => item.Punchlist.FirstOrDefault().Action">
         @context.Punchlist.FirstOrDefault().Action
@@ -40,6 +45,7 @@
     </GridColumn>
 
 
+}
 </Grid>
 
 
@@ -49,42 +55,48 @@
 
     private async Task<GridDataProviderResult<TestDocument>> TestDocumentDataProvider(GridDataProviderRequest<TestDocument> request)
     {
-        if (testDocuments is null) // pull employees only one time for client-side filtering, sorting, and paging
-            testDocuments = GetTestDocuments(); // call a service or an API to pull the employees
+        var isDataRetrieved = teDoservice.GetAll();
+
+        if (testDocuments is null)
+        {
+            await storageService.PopulateList();
+            testDocuments = teDoservice.GetAll(); // call a service or an API to pull the employees
+            
+        } // pull employees only one time for client-side filtering, sorting, and paging
 
         return await Task.FromResult(request.ApplyTo(testDocuments));
     }
 
-    private List<TestDocument> GetTestDocuments()
-    {
-        return new List<TestDocument>
-        {
-            new TestDocument
-            {
-                Id = 1,
-                Participant = new Participant{Name = "Lars"},
-                Introduction = "Intro",
-                DocumentSupplied = "Document",
-                DefinitionAndAbbreviation = new Dictionary<string,string>
-                {
-                    {"Factory Acceptance Test", "FAT"}
-                },
-                Punchlist = new List<Punch>
-                {
-                    new Punch{Action="Corrected"}
-                },
+    // private List<TestDocument> GetTestDocuments()
+    // {
+    //     return new List<TestDocument>
+    //     {
+    //         new TestDocument
+    //         {
+    //             Id = 1,
+    //             Participant = new Participant{Name = "Lars"},
+    //             Introduction = "Intro",
+    //             DocumentSupplied = "Document",
+    //             DefinitionAndAbbreviation = new Dictionary<string,string>
+    //             {
+    //                 {"Factory Acceptance Test", "FAT"}
+    //             },
+    //             Punchlist = new List<Punch>
+    //             {
+    //                 new Punch{Action="Corrected"}
+    //             },
 
-                PlacesOfTesting = new List<PlaceOfTesting>
-                {
-                    new PlaceOfTesting{Firm = new Firm{Name = "Name A", FullAddress="Location A", Id=1}}
-                }
-            }
-        };
-    }
+    //             PlacesOfTesting = new List<PlaceOfTesting>
+    //             {
+    //                 new PlaceOfTesting{Firm = new Firm{Name = "Name A", FullAddress="Location A", Id=1}}
+    //             }
+    //         }
+    //     };
+    // }
 }
 
 @functions {
-
+    
 }
 
 

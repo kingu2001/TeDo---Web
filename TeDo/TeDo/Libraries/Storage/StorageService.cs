@@ -5,7 +5,7 @@ using TeDo.Libraries.Models;
 
 public class StorageService : IStorageService
 {
-    public List<TestDocument> TestDocuments { get; private set; }
+    public IList<TestDocument> TestDocuments { get; private set; }
 
     public StorageService()
     {
@@ -19,7 +19,7 @@ public class StorageService : IStorageService
 
         if(response.IsSuccessStatusCode)
         {
-            var result = await response.Content.ReadFromJsonAsync<List<TestDocument>>();
+            var result = await response.Content.ReadFromJsonAsync<IList<TestDocument>>();
 
             if(result!= null)
             {
