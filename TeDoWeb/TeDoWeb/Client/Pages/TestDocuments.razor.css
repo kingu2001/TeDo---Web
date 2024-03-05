@@ -1,0 +1,29 @@
+/* Basic styling */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  table.document-list {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  

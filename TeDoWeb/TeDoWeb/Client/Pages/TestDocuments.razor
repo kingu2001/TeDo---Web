@@ -1,6 +1,6 @@
-﻿@page "/"
-@using Library.Models
-@using Library.Services
+﻿@page "/testdocument"
+@using TeDoWeb.Library.Models
+@using TeDoWeb.Library.Services
 @inject ITestDocumentService testDocumentService
 @inject IStorageService storageService
 
@@ -14,9 +14,6 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Introduction</th>
-                <th scope="col">Definition and abbreviation</th>
-                <th scope="col">Firm</th>
-                <th scope="col">Participant</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +23,6 @@
                     <td class="document-list-id">@item.Id</td>
                     <td class="document-list-name">@item.Name</td>
                     <td class="document-list-introduction">@item.Introduction</td>
-                    <td class="document-list-firm">@item.Firms?.FirstOrDefault().Name</td>
-                    <td class="document-list-Participant">@item.Participant?.ToString()</td>
                 </tr>
             }
         </tbody>
