@@ -1,4 +1,4 @@
-﻿namespace TeDo.Libraries.Models
+﻿namespace TeDoWebApp.Libraries.Models
 {
     public class PlaceOfTesting
     {

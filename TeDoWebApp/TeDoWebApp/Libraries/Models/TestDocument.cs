@@ -1,6 +1,5 @@
-﻿using Libraries.Models;
-
-namespace TeDo.Libraries.Models
+﻿
+namespace TeDoWebApp.Libraries.Models
 {
 
 

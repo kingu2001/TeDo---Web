@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
-using TeDo.Libraries.Models;
+using TeDoWebApp.Libraries.Models;
 
-namespace TeDo.Libraries
+namespace TeDoWebApp.Libraries
 {
 
 public class StorageService : IStorageService

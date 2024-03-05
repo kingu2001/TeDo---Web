@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using TeDo.Libraries.Models;
 
-namespace TeDo.Libraries
+namespace TeDoWebApp.Libraries
 {
     public interface ITestDocumentService
     { 
