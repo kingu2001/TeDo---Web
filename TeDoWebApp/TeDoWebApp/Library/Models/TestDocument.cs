@@ -1,5 +1,4 @@
-﻿
-namespace TeDoWebApp.Libraries.Models
+﻿namespace Library.Models
 {
 
 

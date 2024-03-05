@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\TeDoWebApp.Shared.csproj" />
-    <ProjectReference Include="..\Libraries\Libraries.csproj" />
+    <ProjectReference Include="..\Library\Library.csproj" />
   </ItemGroup>
 
 </Project>
