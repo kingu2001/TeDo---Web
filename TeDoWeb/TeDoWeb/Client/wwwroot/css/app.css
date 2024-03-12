@@ -99,3 +99,8 @@ a, .btn-link {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+.document-list-name:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+    cursor: pointer; /* Change cursor on hover to indicate it's clickable */
+}
+

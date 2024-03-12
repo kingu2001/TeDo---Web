@@ -3,6 +3,7 @@
 @using TeDoWeb.Library.Services
 @inject ITestDocumentService testDocumentService
 @inject IStorageService storageService
+@inject NavigationManager nav
 
 <h1 class="h1 text-center">List of Test Documents</h1>
 
@@ -22,7 +23,7 @@
             @foreach (var item in testDocuments)
             {
                 <tr>
-                    <td class="document-list-name">@item.Name</td>
+                    <td class="document-list-name" @onclick="RowClicked">@item.Name</td>
                     <td class="document-list-introduction">@item.Introduction</td>
                     <td class="document-list-documentsupplied">@item.DocumentSupplied</td>
                     @foreach(var entities in item.Participants)
@@ -30,7 +31,7 @@
                         <td class="document-participant-name">@entities.Name</td>
                         <td class="document-participant-signature">@entities.Signature</td>
                     }
-                    @foreach(var entities in item.DefinitionAndAbbreviation)
+                    @* @foreach(var entities in item.DefinitionAndAbbreviation)
                     {
                         <td class="document-definitionandabbreviation-definition">@entities.Definition</td>
                         <td class="document-definitionandabbreviation-abbreviation">@entities.Abbreviation</td>
@@ -43,7 +44,7 @@
                         //<td class="document-firm-oat">@entities.OAT</td>
                         //<td class="document-firm-fat">@entities.FAT</td>
                         //<td class="document-firm-iat">@entities.IAT</td>
-                    }
+                    } *@
                 </tr>
             }
         </tbody>
@@ -66,5 +67,9 @@
             }
         }
         await base.OnInitializedAsync();
+    }
+    private void RowClicked()
+    {
+       nav.NavigateTo($"/DocumentSigning");
     }
 }

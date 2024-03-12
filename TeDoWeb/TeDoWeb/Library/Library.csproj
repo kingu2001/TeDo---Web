@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.2.9" />
+    <PackageReference Include="Syncfusion.Blazor.WordProcessor" Version="24.2.9" />
+  </ItemGroup>
+
 </Project>

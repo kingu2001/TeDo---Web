@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Syncfusion.Blazor;
 
 namespace TeDoWeb
 {
@@ -9,14 +10,16 @@ namespace TeDoWeb
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
-
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddRazorPages();
+			builder.Services.AddServerSideBlazor().AddHubOptions(o => { o.MaximumReceiveMessageSize = 102400000; });
+			builder.Services.AddSyncfusionBlazor();
 
 			var app = builder.Build();
 
-			// Configure the HTTP request pipeline.
-			if (app.Environment.IsDevelopment())
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NAaF1cXmhKYVJ/WmFZfVpgcl9CYVZQRmYuP1ZhSXxXdkZiW39YdHVURGFUV0Q=");
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
 			{
 				app.UseWebAssemblyDebugging();
 			}
