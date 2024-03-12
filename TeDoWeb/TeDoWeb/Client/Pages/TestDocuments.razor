@@ -14,15 +14,36 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Introduction</th>
+                <th scope="col">Participant name</th>
+                <th scope="col">Participant signature</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in testDocuments)
             {
                 <tr>
-                    <td class="document-list-id">@item.Id</td>
                     <td class="document-list-name">@item.Name</td>
                     <td class="document-list-introduction">@item.Introduction</td>
+                    <td class="document-list-documentsupplied">@item.DocumentSupplied</td>
+                    @foreach(var entities in item.Participants)
+                    {
+                        <td class="document-participant-name">@entities.Name</td>
+                        <td class="document-participant-signature">@entities.Signature</td>
+                    }
+                    @foreach(var entities in item.DefinitionAndAbbreviation)
+                    {
+                        <td class="document-definitionandabbreviation-definition">@entities.Definition</td>
+                        <td class="document-definitionandabbreviation-abbreviation">@entities.Abbreviation</td>
+                    }
+                    @foreach(var entities in item.Firms)
+                    {
+                        <td class="document-firm-name">@entities.Name</td>
+                        <td class="document-firm-fulladdress">@entities.FullAddress</td>
+                        //<td class="document-firm-sat">@entities.SAT</td>
+                        //<td class="document-firm-oat">@entities.OAT</td>
+                        //<td class="document-firm-fat">@entities.FAT</td>
+                        //<td class="document-firm-iat">@entities.IAT</td>
+                    }
                 </tr>
             }
         </tbody>
