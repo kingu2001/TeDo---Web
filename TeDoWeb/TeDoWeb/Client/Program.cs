@@ -9,7 +9,7 @@ namespace TeDoWeb.Client
 	{
 		public static async Task Main(string[] args)
 		{
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NAaF1cXmhKYVJ/WmFZfVpgcl9CYVZQRmYuP1ZhSXxXdkZiW39YdHVURGFUV0Q=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBPh8sVXJwS0d+WFBPd11dXmJWd1p/THNYflR1fV9DaUwxOX1dQl9nSX1SckVgXXxdcHRUQ2A=;Mgo+DSMBMAY9C3t2UVhhQlVFfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5Qd0FjWntdc3RVRWBa;MzE1ODgzOUAzMjM0MmUzMDJlMzBTcjVlZTMvVTBURitwWUJtVjJ2WHJ5MUhKcUxvTWp2bmpCZmd5VDhIclBNPQ==");
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 			builder.RootComponents.Add<App>("#app");
 			builder.RootComponents.Add<HeadOutlet>("head::after");
