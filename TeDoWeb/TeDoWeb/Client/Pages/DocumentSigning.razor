@@ -1,16 +1,9 @@
-﻿@page "/DocumentSigning"
-@using System.IO;
-@using Syncfusion.Blazor.DocumentEditor;
-@using Syncfusion.Blazor.Buttons;
-@using System.Text.Json;
-@inject HttpClient Http
-
-
+﻿@page "/documentsigning"
+@using Syncfusion.Blazor.SfPdfViewer;
+@inject NavigationManager nav
 
 <h3>DocumentSigning</h3>
-<SfButton>Save</SfButton>
-<SfDocumentEditorContainer Height="700px" Width="1250px" EnableAutoFocus=true EnableToolbar=true></SfDocumentEditorContainer>
-
+<SfPdfViewer2 Height="640px" Width="100%"></SfPdfViewer2>
 
 @code {
 

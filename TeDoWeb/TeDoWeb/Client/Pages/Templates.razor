@@ -1,0 +1,68 @@
+﻿@page "/templates"
+@using System.IO;
+@using Syncfusion.Blazor.DocumentEditor;
+@using Syncfusion.Blazor.Buttons;
+@using Syncfusion.Pdf;
+@using Syncfusion.DocIORenderer;
+@using System.Text.Json;
+@using System.Net;
+@inject HttpClient Http
+
+
+
+<h3>Templates</h3>
+<SfButton @onclick="DownloadAsDocx">Download as docx</SfButton>
+<SfButton @onclick="ExportAsPdf">Download as pdf</SfButton>
+<SfDocumentEditorContainer @ref="container" Height="700px" Width="1250px" EnableAutoFocus=true EnableToolbar=true>
+    <DocumentEditorContainerEvents ContentChanged="OnLoad"></DocumentEditorContainerEvents>
+</SfDocumentEditorContainer>
+
+
+@code {
+    SfDocumentEditorContainer container;
+    string sfdtString;
+
+
+    public async void DownloadAsDocx()
+    {
+        SfDocumentEditor editor = container.DocumentEditor;
+        await editor.SaveAsync("Test", FormatType.Docx);
+    }
+    public async void DownloadAsPDF()
+    {
+        SfDocumentEditor editor = container.DocumentEditor;
+
+    }
+    public void OnLoad(object args)
+    {
+        SfDocumentEditor editor = container.DocumentEditor;
+        editor.OpenAsync(sfdtString);
+        //To observe the memory go down, null out the reference of sfdtString variable.
+        sfdtString = null;
+    }
+    public async void ExportAsPdf()
+    {
+        SfDocumentEditor editor = container.DocumentEditor;
+        string base64Data = await editor.SaveAsBlobAsync(FormatType.Docx);
+        byte[] data = Convert.FromBase64String(base64Data);
+        //To observe the memory go down, null out the reference of base64Data variable.
+        base64Data = null;
+        //Word document file stream
+        Stream stream = new MemoryStream(data);
+        //To observe the memory go down, null out the reference of data variable.
+        data = null;
+        Syncfusion.DocIO.DLS.WordDocument doc = new Syncfusion.DocIO.DLS.WordDocument(stream, Syncfusion.DocIO.FormatType.Docx);
+        //Instantiation of DocIORenderer for Word to PDF conversion
+        DocIORenderer render = new DocIORenderer();
+        //Converts Word document into PDF document
+        Syncfusion.Pdf.PdfDocument pdfDocument = render.ConvertToPDF(doc);
+        using (var fileStream = new FileStream(@"wwwroot/data/GettingStarted.pdf", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        {
+            //Saves the PDF file
+            pdfDocument.Save(fileStream);
+            pdfDocument.Close();
+            fileStream.Close();
+            stream.Close();
+        }
+    }
+}
