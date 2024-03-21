@@ -14,7 +14,6 @@
 <SfButton @onclick="DownloadAsDocx">Download as docx</SfButton>
 <SfButton @onclick="ExportAsPdf">Download as pdf</SfButton>
 <SfDocumentEditorContainer @ref="container" Height="700px" Width="1250px" EnableAutoFocus=true EnableToolbar=true>
-    <DocumentEditorContainerEvents ContentChanged="OnLoad"></DocumentEditorContainerEvents>
 </SfDocumentEditorContainer>
 
 
@@ -22,6 +21,7 @@
     SfDocumentEditorContainer container;
     string sfdtString;
 
+    
 
     public async void DownloadAsDocx()
     {
@@ -32,13 +32,6 @@
     {
         SfDocumentEditor editor = container.DocumentEditor;
 
-    }
-    public void OnLoad(object args)
-    {
-        SfDocumentEditor editor = container.DocumentEditor;
-        editor.OpenAsync(sfdtString);
-        //To observe the memory go down, null out the reference of sfdtString variable.
-        sfdtString = null;
     }
     public async void ExportAsPdf()
     {

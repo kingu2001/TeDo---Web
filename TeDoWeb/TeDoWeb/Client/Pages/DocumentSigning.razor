@@ -1,10 +1,14 @@
 ﻿@page "/documentsigning"
 @using Syncfusion.Blazor.SfPdfViewer;
+@using System.Security.Cryptography.X509Certificates;
+@using System.Security.Cryptography;
 @inject NavigationManager nav
 
+
 <h3>DocumentSigning</h3>
-<SfPdfViewer2 Height="640px" Width="100%"></SfPdfViewer2>
+<Syncfusion.Blazor.Buttons.SfButton >Sign</Syncfusion.Blazor.Buttons.SfButton>
+<SfPdfViewer2 @ref="viewer" Height="640px" Width="100%" ></SfPdfViewer2>
 
 @code {
-
+    SfPdfViewer2 viewer;
 }
