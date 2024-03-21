@@ -49,6 +49,11 @@ namespace Testsign.Controllers
                 
                 System.IO.File.WriteAllBytes("test.pdf", signature);
                 System.IO.File.WriteAllBytes("test2.pdf", dataToSign);
+                //List<byte> list = new List<byte>();
+                //list.AddRange(dataToSign);
+                //list.AddRange(signature);
+
+                //byte[] c = list.ToArray();
                 using (RSA rsa2 = publickey)
                 {
                     // Compute the hash of the original document
