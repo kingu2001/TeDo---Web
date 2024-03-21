@@ -20,16 +20,26 @@ namespace Testsign.Controllers
         public IActionResult Index()
         {
             string filePath = @"C:\Users\Johan\OneDrive\Skrivebord\TeDo\Tedo---Web\TeDoWeb\Testsign\CSharp+Book+2019+Refresh.pdf";
+            string filePath2 = @"C:\Users\Johan\OneDrive\Skrivebord\TeDo\Tedo---Web\TeDoWeb\Testsign\test3.pdf";
             X509Certificate2 certificate = new X509Certificate2("cert.pfx", "12345");
             RSA publickey = certificate.GetRSAPublicKey();
             RSA privatekey = certificate.GetRSAPrivateKey();
             byte[] dataToSign;
+            byte[] dataToSign2;
             using(StreamReader reader = new StreamReader(filePath))
             {
                 using(MemoryStream ms = new MemoryStream())
                 {
                     reader.BaseStream.CopyTo(ms);
                     dataToSign = ms.ToArray();
+                }
+            }
+            using(StreamReader reader = new StreamReader(filePath2))
+            {
+                using(MemoryStream ms = new MemoryStream())
+                {
+                    reader.BaseStream.CopyTo(ms);
+                    dataToSign2 = ms.ToArray();
                 }
             }
 
@@ -44,7 +54,7 @@ namespace Testsign.Controllers
                     // Compute the hash of the original document
                     byte[] originalHash = SHA256.Create().ComputeHash(dataToSign);
                     // Verify the digital signature
-                    bool signatureValid = rsa2.VerifyData(dataToSign, signature, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                    bool signatureValid = rsa2.VerifyData(dataToSign2.SkipLast(512).ToArray(), dataToSign2.TakeLast(512).ToArray(), HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
 
                     if (signatureValid)
                     {
